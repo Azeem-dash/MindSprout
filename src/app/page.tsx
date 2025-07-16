@@ -1,103 +1,210 @@
-import Image from "next/image";
+'use client'
+
+import Link from 'next/link'
+import { motion } from 'framer-motion'
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div className="max-w-4xl mx-auto">
+      {/* Hero Section */}
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="text-center py-12"
+      >
+        <motion.div 
+          className="text-6xl mb-4"
+          animate={{ 
+            scale: [1, 1.1, 1],
+            rotate: [0, 5, -5, 0]
+          }}
+          transition={{ 
+            duration: 4,
+            repeat: Infinity,
+            repeatType: "reverse"
+          }}
+        >
+          🌱
+        </motion.div>
+        <h1 className="text-4xl md:text-6xl font-bold text-gray-800 dark:text-gray-200 mb-4">
+          Welcome to <span className="text-purple-600 dark:text-purple-400">MindSprout</span>
+        </h1>
+        <p className="text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
+          Your AI-powered habit tracker and daily reflection coach. 
+          Build better habits, track your progress, and get personalized insights.
+        </p>
+        
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <motion.div
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            <Link
+              href="/setup"
+              className="inline-block bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-200 shadow-lg hover:shadow-xl"
+            >
+              Get Started 🚀
+            </Link>
+          </motion.div>
+          <motion.div
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
-            Read our docs
-          </a>
+            <Link
+              href="/checkin"
+              className="inline-block bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm text-purple-600 dark:text-purple-400 px-8 py-3 rounded-lg font-semibold hover:bg-white/70 dark:hover:bg-gray-800/70 transition-colors border border-purple-200 dark:border-purple-600 hover:border-purple-300 dark:hover:border-purple-500"
+            >
+              Daily Check-in ✅
+            </Link>
+          </motion.div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+      </motion.div>
+
+      {/* Features Section */}
+      <motion.div 
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        className="grid md:grid-cols-3 gap-8 py-12"
+      >
+        <motion.div 
+          className="bg-white/40 dark:bg-gray-800/40 backdrop-blur-sm rounded-xl p-6 border border-white/30 dark:border-gray-700/30 shadow-lg hover:shadow-xl transition-all duration-300 group"
+          whileHover={{ scale: 1.05, y: -5 }}
+          transition={{ type: "spring", stiffness: 400, damping: 10 }}
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+          <motion.div 
+            className="text-3xl mb-4"
+            whileHover={{ scale: 1.2, rotate: 5 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+          >
+            🎯
+          </motion.div>
+          <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+            Habit Tracking
+          </h3>
+          <p className="text-gray-600 dark:text-gray-400">
+            Set meaningful goals and track your daily progress with our intuitive interface.
+          </p>
+        </motion.div>
+        
+        <motion.div 
+          className="bg-white/40 dark:bg-gray-800/40 backdrop-blur-sm rounded-xl p-6 border border-white/30 dark:border-gray-700/30 shadow-lg hover:shadow-xl transition-all duration-300 group"
+          whileHover={{ scale: 1.05, y: -5 }}
+          transition={{ type: "spring", stiffness: 400, damping: 10 }}
         >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+          <motion.div 
+            className="text-3xl mb-4"
+            whileHover={{ scale: 1.2, rotate: 5 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+          >
+            🧠
+          </motion.div>
+          <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+            AI Insights
+          </h3>
+          <p className="text-gray-600 dark:text-gray-400">
+            Get personalized reflections, tips, and motivation powered by AI to keep you on track.
+          </p>
+        </motion.div>
+        
+        <motion.div 
+          className="bg-white/40 dark:bg-gray-800/40 backdrop-blur-sm rounded-xl p-6 border border-white/30 dark:border-gray-700/30 shadow-lg hover:shadow-xl transition-all duration-300 group"
+          whileHover={{ scale: 1.05, y: -5 }}
+          transition={{ type: "spring", stiffness: 400, damping: 10 }}
         >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          <motion.div 
+            className="text-3xl mb-4"
+            whileHover={{ scale: 1.2, rotate: 5 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+          >
+            📊
+          </motion.div>
+          <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+            Progress History
+          </h3>
+          <p className="text-gray-600 dark:text-gray-400">
+            Visualize your journey with detailed analytics and celebrate your achievements.
+          </p>
+        </motion.div>
+      </motion.div>
+
+      {/* How It Works */}
+      <motion.div 
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.4 }}
+        className="py-12 text-center"
+      >
+        <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-8">How It Works</h2>
+        <div className="grid md:grid-cols-4 gap-6">
+          <motion.div 
+            className="space-y-4"
+            whileHover={{ scale: 1.05, y: -5 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+          >
+            <motion.div 
+              className="bg-purple-100 dark:bg-purple-900/30 rounded-full w-16 h-16 flex items-center justify-center mx-auto text-2xl"
+              whileHover={{ rotate: 360 }}
+              transition={{ duration: 0.3 }}
+            >
+              1️⃣
+            </motion.div>
+            <h3 className="font-semibold text-gray-800 dark:text-gray-200">Set Your Goal</h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400">Define the habit you want to build</p>
+          </motion.div>
+          
+          <motion.div 
+            className="space-y-4"
+            whileHover={{ scale: 1.05, y: -5 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+          >
+            <motion.div 
+              className="bg-blue-100 dark:bg-blue-900/30 rounded-full w-16 h-16 flex items-center justify-center mx-auto text-2xl"
+              whileHover={{ rotate: 360 }}
+              transition={{ duration: 0.3 }}
+            >
+              2️⃣
+            </motion.div>
+            <h3 className="font-semibold text-gray-800 dark:text-gray-200">Daily Check-in</h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400">Log your progress and mood daily</p>
+          </motion.div>
+          
+          <motion.div 
+            className="space-y-4"
+            whileHover={{ scale: 1.05, y: -5 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+          >
+            <motion.div 
+              className="bg-green-100 dark:bg-green-900/30 rounded-full w-16 h-16 flex items-center justify-center mx-auto text-2xl"
+              whileHover={{ rotate: 360 }}
+              transition={{ duration: 0.3 }}
+            >
+              3️⃣
+            </motion.div>
+            <h3 className="font-semibold text-gray-800 dark:text-gray-200">Get AI Feedback</h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400">Receive personalized insights</p>
+          </motion.div>
+          
+          <motion.div 
+            className="space-y-4"
+            whileHover={{ scale: 1.05, y: -5 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+          >
+            <motion.div 
+              className="bg-pink-100 dark:bg-pink-900/30 rounded-full w-16 h-16 flex items-center justify-center mx-auto text-2xl"
+              whileHover={{ rotate: 360 }}
+              transition={{ duration: 0.3 }}
+            >
+              4️⃣
+            </motion.div>
+            <h3 className="font-semibold text-gray-800 dark:text-gray-200">Track Progress</h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400">See your growth over time</p>
+          </motion.div>
+        </div>
+      </motion.div>
     </div>
   );
 }
