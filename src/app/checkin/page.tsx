@@ -23,11 +23,11 @@ const CheckInPage = () => {
     setHabit(JSON.parse(savedHabit))
   }, [router])
 
-  const handleSubmit = async (values: CheckInFormData) => {
+  const handleSubmit = async (values: CheckInFormData) => {
     const submitData: CheckInData = {
       ...values,
       date: new Date().toISOString().split('T')[0],
-      timestamp: new Date().toISOString(),
+      timestamp: new Date().toISOString(),
     }
 
     // Store check-in data
@@ -66,26 +66,26 @@ const CheckInPage = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="bg-white/40 backdrop-blur-sm rounded-xl p-8 border border-white/30 shadow-lg"
+        className="bg-white/40 dark:bg-gray-800/40 backdrop-blur-sm rounded-xl p-8 border border-white/30 dark:border-gray-700/30 shadow-lg"
       >
         <div className="text-center mb-8">
           <div className="text-4xl mb-4">✅</div>
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">Daily Check-In</h1>
-          <p className="text-gray-600">How did you do with your habit today?</p>
+          <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-2">Daily Check-In</h1>
+          <p className="text-gray-600 dark:text-gray-400">How did you do with your habit today?</p>
         </div>
 
         {/* Habit Display */}
-        <div className="bg-purple-100/50 rounded-lg p-4 mb-8">
-          <h2 className="text-xl font-semibold text-purple-800 mb-1">
+        <div className="bg-purple-100/50 dark:bg-purple-900/30 rounded-lg p-4 mb-8">
+          <h2 className="text-xl font-semibold text-purple-800 dark:text-purple-200 mb-1">
             {habit.habitName}
           </h2>
-          <p className="text-purple-600 text-sm">{habit.description}</p>
+          <p className="text-purple-600 dark:text-purple-400 text-sm">{habit.description}</p>
         </div>
 
         <Formik
           initialValues={{
             habitCompleted: false,
-            mood: '',
+            mood: 'great' as const,
             notes: '',
           }}
           onSubmit={handleSubmit}
@@ -114,7 +114,7 @@ const CheckInPage = () => {
                     type="button"
                     onClick={() => setFieldValue('habitCompleted', false)}
                     className={`flex-1 py-4 px-6 rounded-lg font-semibold transition-all duration-200 ${
-                      !values.habitCompleted && values.habitCompleted !== ''
+                      !values.habitCompleted
                         ? 'bg-red-500 text-white shadow-lg transform scale-105'
                         : 'bg-white/50 text-gray-700 hover:bg-red-100'
                     }`}
@@ -167,8 +167,7 @@ const CheckInPage = () => {
               <div className="pt-6">
                 <button
                   type="submit"
-                  disabled={values.habitCompleted === '' || !values.mood}
-                  className="w-full bg-purple-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-purple-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1 duration-200"
+                  className="w-full bg-purple-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-purple-700 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1 duration-200"
                 >
                   Get AI Feedback 🧠
                 </button>

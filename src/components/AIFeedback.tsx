@@ -22,7 +22,7 @@ const AIFeedback: React.FC<AIFeedbackProps> = ({ checkInData, habit }) => {
       await new Promise((resolve) => setTimeout(resolve, 1000))
       
       // Generate dynamic responses based on habit completion and mood
-      const { habitCompleted, mood, notes } = checkInData
+      const { habitCompleted, mood } = checkInData
       
       let reflection = ''
       let tip = ''
