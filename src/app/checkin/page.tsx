@@ -5,17 +5,11 @@ import { useRouter } from 'next/navigation'
 import { Formik, Form, Field } from 'formik'
 import { motion } from 'framer-motion'
 import AIFeedback from '@/components/AIFeedback'
-
-interface CheckInData {
-  habitCompleted: boolean
-  mood: string
-  notes: string
-  date: string
-}
+import { CheckInData, CheckInFormData, Habit, MoodOption } from '@/types'
 
 const CheckInPage = () => {
   const router = useRouter()
-  const [habit, setHabit] = useState<any>(null)
+  const [habit, setHabit] = useState<Habit | null>(null)
   const [showFeedback, setShowFeedback] = useState(false)
   const [checkInData, setCheckInData] = useState<CheckInData | null>(null)
 
@@ -29,15 +23,15 @@ const CheckInPage = () => {
     setHabit(JSON.parse(savedHabit))
   }, [router])
 
-  const handleSubmit = async (values: any) => {
-    const submitData = {
+  const handleSubmit = async (values: CheckInFormData) => {
+    const submitData: CheckInData = {
       ...values,
       date: new Date().toISOString().split('T')[0],
-      timestamp: new Date().toISOString(),
+      timestamp: new Date().toISOString(),
     }
 
     // Store check-in data
-    const existingCheckIns = JSON.parse(localStorage.getItem('mindsprout_checkins') || '[]')
+    const existingCheckIns: CheckInData[] = JSON.parse(localStorage.getItem('mindsprout_checkins') || '[]')
     existingCheckIns.push(submitData)
     localStorage.setItem('mindsprout_checkins', JSON.stringify(existingCheckIns))
 
@@ -45,7 +39,7 @@ const CheckInPage = () => {
     setShowFeedback(true)
   }
 
-  const moodOptions = [
+  const moodOptions: MoodOption[] = [
     { value: 'great', emoji: '😊', label: 'Great' },
     { value: 'good', emoji: '🙂', label: 'Good' },
     { value: 'okay', emoji: '😐', label: 'Okay' },

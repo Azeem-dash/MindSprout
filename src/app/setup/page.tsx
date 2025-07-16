@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import { motion } from 'framer-motion'
+import { HabitFormData } from '@/types'
 
 // Validation schema
 const HabitSchema = Yup.object().shape({
@@ -30,7 +31,7 @@ const HabitSetupPage = () => {
   const router = useRouter()
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const handleSubmit = async (values: any) => {
+  const handleSubmit = async (values: HabitFormData) => {
     setIsSubmitting(true)
     
     // Simulate API call

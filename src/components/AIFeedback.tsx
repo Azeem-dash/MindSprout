@@ -2,9 +2,15 @@
 
 import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
+import { CheckInData, Habit, AIFeedback as AIFeedbackType } from '@/types'
 
-const AIFeedback = ({ checkInData, habit }: { checkInData: any; habit: any }) => {
-  const [feedback, setFeedback] = useState({
+interface AIFeedbackProps {
+  checkInData: CheckInData
+  habit: Habit
+}
+
+const AIFeedback: React.FC<AIFeedbackProps> = ({ checkInData, habit }) => {
+  const [feedback, setFeedback] = useState<AIFeedbackType>({
     reflection: '',
     tip: '',
     quote: '',

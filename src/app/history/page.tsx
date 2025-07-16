@@ -2,10 +2,11 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { CheckInData, Habit } from '@/types'
 
 const HistoryPage = () => {
-  const [checkIns, setCheckIns] = useState<any[]>([])
-  const [habit, setHabit] = useState<any>(null)
+  const [checkIns, setCheckIns] = useState<CheckInData[]>([])
+  const [habit, setHabit] = useState<Habit | null>(null)
 
   useEffect(() => {
     // Load data from localStorage
